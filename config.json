@@ -1,4 +1,4 @@
 {
-  "start_hour": 5,
+  "start_hour": 7,
   "log_file": "~/Library/Logs/claude_ping.log"
 }
