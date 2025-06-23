@@ -143,7 +143,8 @@ dialog_interface() {
                 if [ -n "$hour_choice" ]; then
                     update_start_time "$hour_choice"
                     if [ "$status" = "running" ]; then
-                        start_services  # Restart with new schedule
+                        stop_services   # Stop old services first
+                        start_services  # Start with new schedule
                     fi
                     dialog --msgbox "Start time updated to $(printf "%02d:00" $hour_choice)" 6 40
                 fi
@@ -235,7 +236,8 @@ basic_interface() {
                 if [[ "$new_hour" =~ ^[5-9]$|^1[0-2]$ ]]; then
                     update_start_time "$new_hour"
                     if [ "$status" = "running" ]; then
-                        start_services
+                        stop_services   # Stop old services first
+                        start_services  # Start with new schedule
                     fi
                     echo -e "${GREEN}Start time updated to $(printf "%02d:00" $new_hour)${NC}"
                 else
